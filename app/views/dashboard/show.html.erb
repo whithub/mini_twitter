@@ -840,7 +840,11 @@
                             <span class="ProfileNav-label">Tweets</span>
 <!--TODO-->
 
-                            <span class="ProfileNav-value" data-is-compact="false">1</span>
+                            <span class="ProfileNav-value" data-is-compact="false">
+                              <% if current_user %>
+                                <%= current_user.statuses_count %>
+                              <% end %>
+                            </span>
 <!--TODO end-->
 
                           </a>
@@ -851,7 +855,11 @@
                             <span class="ProfileNav-label">Following</span>
 <!--TODO-->
 
-                            <span class="ProfileNav-value" data-is-compact="false">34</span>
+                            <span class="ProfileNav-value" data-is-compact="false">
+                              <% if current_user %>
+                                <%= current_user.followers_count %>
+                              <% end %>
+                            </span>
 <!--TODO end-->
 
                           </a>
@@ -862,7 +870,11 @@
                             <span class="ProfileNav-label">Followers</span>
 <!--TODO-->
 
-                            <span class="ProfileNav-value" data-is-compact="false">5</span>
+                            <span class="ProfileNav-value" data-is-compact="false">
+                              <% if current_user %>
+                                <%= current_user.friends_count %>
+                              <% end %>
+                            </span>
 <!--TODO end-->
 
                           </a>
@@ -939,9 +951,13 @@
                       <div class="ProfileHeaderCard-location">
                         <span class="Icon Icon--geo Icon--medium"></span>
 <!--TODO-->
-                                                    <span class="ProfileHeaderCard-locationText u-dir" dir="ltr">
-                                                        <a href="/search?q=place%3Ab49b3053b5c25bf5" data-place-id="b49b3053b5c25bf5">Denver, CO</a>
-                                                    </span>
+                        <span class="ProfileHeaderCard-locationText u-dir" dir="ltr">
+                            <a href="/search?q=place%3Ab49b3053b5c25bf5" data-place-id="b49b3053b5c25bf5">
+                              <% if current_user %>
+                                <%= current_user.location %>
+                              <% end %>
+                            </a>
+                        </span>
 <!--TODO end-->
                       </div>
                       <div class="ProfileHeaderCard-url  u-hidden">
@@ -1448,7 +1464,10 @@
                                         <%= current_user.name %>
                                       <% end %>
                                     </strong>
-                                    <span>‏</span><span class="username js-action-profile-name"><s>@</s><b>whithub</b></span>
+                                    <span>‏</span>
+                                      <span class="username js-action-profile-name">
+                                        <s>@</s><% if current_user %><%=current_user.screen_name %><% end %>
+                                      </span>
 
                                   </a>
                                   <small class="time">
