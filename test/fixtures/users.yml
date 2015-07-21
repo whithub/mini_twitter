@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  screen_name: MyString
+  location: MyString
+  statuses_count: MyString
+  friends_count: MyString
+  followers_count: MyString
+  uid: MyString
+  provider: MyString
+  oauth_token: MyString
+  oauth_token_secret: MyString
+
+two:
+  name: MyString
+  screen_name: MyString
+  location: MyString
+  statuses_count: MyString
+  friends_count: MyString
+  followers_count: MyString
+  uid: MyString
+  provider: MyString
+  oauth_token: MyString
+  oauth_token_secret: MyString
