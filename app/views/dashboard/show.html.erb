@@ -539,7 +539,17 @@
                       <a href="/whithub" class="account-summary account-summary-small js-nav"
                          data-nav="view_profile">
                         <div class="content">
-                          <div class="account-group js-mini-current-user" data-user-id="3094852202" data-screen-name="whithub"><b class="fullname">Whitney Hiemstra</b><span class="screen-name hidden" dir="ltr">@whithub</span><small class="metadata">View profile</small></div>
+                          <div class="account-group js-mini-current-user" data-user-id="3094852202" data-screen-name="whithub">
+                            <b class="fullname">
+                              <% if current_user %>
+                                <%= current_user.name %>
+                              <% end %>
+                            </b>
+                            <span class="screen-name hidden" dir="ltr">
+                              <% if current_user %>
+                                <%= current_user.screen_name %>
+                              <% end %>
+                            </span><small class="metadata">View profile</small></div>
                         </div>
                       </a>
 <!--TODO end -->

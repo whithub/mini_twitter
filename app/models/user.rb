@@ -1,21 +1,39 @@
 class User < ActiveRecord::Base
 
   def self.from_omniauth(auth_info)
-    if user = find_by(uid: auth_info.extra.raw_info.user_id)
-      user
-    else
-      create({name: auth_info.extra.raw_info.name,
-              screen_name: auth_info.extra.raw_info.screen_name,
-              location: auth_info.extra.raw_info.location,
-              statuses_count: auth_info.extra.raw_info.statuses_count,
-              friends_count: auth_info.extra.raw_info.friends_count,
-              followers_count: auth_info.extra.raw_info.followers_count,
-              uid: auth_info.extra.raw_info.user_id,
-              provider: auth_info.provider,
-              oauth_token: auth_info.credentials.token,
-              oauth_token_secret: auth_info.credentials.secret,
-        })
-    end
+    user = User.find_or_create_by(
+      uid:      auth_info.extra.raw_info.user_id,
+      provider: auth_info.provider
+    )
+
+    user.update_attributes(
+      name:               auth_info.extra.raw_info.name,
+      screen_name:        auth_info.extra.raw_info.screen_name,
+      location:           auth_info.extra.raw_info.location,
+      statuses_count:     auth_info.extra.raw_info.statuses_count,
+      friends_count:      auth_info.extra.raw_info.friends_count,
+      followers_count:    auth_info.extra.raw_info.followers_count,
+      oauth_token:        auth_info.credentials.token,
+      oauth_token_secret: auth_info.credentials.secret
+    )
+
+    user
+
+    # if user = find_by(uid: auth_info.extra.raw_info.user_id)
+    #   user
+    # else
+    #   create({name: auth_info.extra.raw_info.name,
+    #           screen_name: auth_info.extra.raw_info.screen_name,
+    #           location: auth_info.extra.raw_info.location,
+    #           statuses_count: auth_info.extra.raw_info.statuses_count,
+    #           friends_count: auth_info.extra.raw_info.friends_count,
+    #           followers_count: auth_info.extra.raw_info.followers_count,
+    #           uid: auth_info.extra.raw_info.user_id,
+    #           provider: auth_info.provider,
+    #           oauth_token: auth_info.credentials.token,
+    #           oauth_token_secret: auth_info.credentials.secret,
+    #     })
+    # end
   end
 
   def twitter_client
