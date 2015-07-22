@@ -604,7 +604,11 @@
           <div class="ProfileCanopy-header u-bgUserColor" style="margin-top: 0px;">
 <!--TODO-->
             <div class="ProfileCanopy-headerBg">
-              <img alt="" src="https://pbs.twimg.com/profile_banners/3094852202/1426651226/1500x500"
+              <img alt=""
+                   src=
+                     <% if current_user %>
+                       <%= current_user.profile_banner_url %>
+                     <% end %>
                    style="transform: none;">
             </div>
 <!--TODO end -->
@@ -718,7 +722,12 @@
                      data-resolved-url-large="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI.jpg"
                      data-url="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI.jpg"
                      target="_blank" data-original-title="Whitney Hiemstra">
-                    <img class="ProfileAvatar-image" src="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI_400x400.jpg" alt="Whitney Hiemstra">
+                    <img class="ProfileAvatar-image"
+                         src=
+                           <% if current_user %>
+                            <%= current_user.profile_image_url %>
+                           <% end %>
+                         alt="">
                   </a>
 <!--TODO end-->
 
@@ -1458,7 +1467,7 @@
                                     <a href="/whithub/status/609546014047907840" class="tweet-timestamp js-permalink js-nav js-tooltip"
                                        title="8:21 PM - 12 Jun 2015">
                                       <span class="_timestamp js-short-timestamp " data-aria-label-part="last" data-time="1434162069" data-time-ms="1434162069000" data-long-form="true">
-                                        <%= tweet.created_at.strftime('%a %d') %>
+                                        <%= tweet.created_at.strftime('%b %d') %>
                                       </span>
                                     </a>
                                   </small>

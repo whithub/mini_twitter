@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
       name:               auth_info.extra.raw_info.name,
       screen_name:        auth_info.extra.raw_info.screen_name,
       location:           auth_info.extra.raw_info.location,
+      profile_image_url:  auth_info.extra.raw_info.profile_image_url,
+      profile_banner_url: auth_info.extra.raw_info.profile_banner_url,
       statuses_count:     auth_info.extra.raw_info.statuses_count,
       friends_count:      auth_info.extra.raw_info.friends_count,
       followers_count:    auth_info.extra.raw_info.followers_count,
