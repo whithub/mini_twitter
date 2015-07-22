@@ -1348,8 +1348,7 @@
               " data-test-selector="ProfileTimeline">
                   <div class="ProfileHeading">
                     <div class="ProfileHeading-spacer"></div>
-                    <div class="ProfileHeading-content
-      ">
+                    <div class="ProfileHeading-content">
                       <h2 id="content-main-heading" class="ProfileHeading-title u-hiddenVisually">Tweets</h2>
                       <ul class="ProfileHeading-toggle">
                         <li class="ProfileHeading-toggleItem
@@ -1396,6 +1395,7 @@
                     </div>
                   </div>
                   <div id="timeline">
+                    <% current_user.twitter_timeline.each do |tweet| %>
                     <div class="stream-container " data-max-position="609546014047907840"
                          data-min-position="609546014047907840">
                       <div class="stream-item js-new-items-bar-container"></div>
@@ -1406,22 +1406,6 @@
                               data-item-type="tweet">
                             <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable js-original-tweet
  my-tweet
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1458,27 +1442,31 @@
                                 <div class="stream-item-header">
                                   <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav"
                                      href="/whithub" data-user-id="3094852202">
-                                    <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI_bigger.jpg" alt="">
+                                    <img class="avatar js-action-profile-avatar"
+                                         src=<%= tweet.user.profile_image_url %>
+                                         alt="">
                                     <strong class="fullname js-action-profile-name show-popup-with-id">
-                                      <%if current_user %>
-                                        <%= current_user.name %>
-                                      <% end %>
+                                      <%= tweet.user.name %>
                                     </strong>
                                     <span>‏</span>
                                       <span class="username js-action-profile-name">
-                                        <s>@</s><% if current_user %><%=current_user.screen_name %><% end %>
+                                        <s>@</s><%= tweet.user.screen_name %>
                                       </span>
 
                                   </a>
                                   <small class="time">
                                     <a href="/whithub/status/609546014047907840" class="tweet-timestamp js-permalink js-nav js-tooltip"
-                                       title="8:21 PM - 12 Jun 2015"><span class="_timestamp js-short-timestamp " data-aria-label-part="last" data-time="1434162069" data-time-ms="1434162069000" data-long-form="true">Jun 12</span></a>
+                                       title="8:21 PM - 12 Jun 2015">
+                                      <span class="_timestamp js-short-timestamp " data-aria-label-part="last" data-time="1434162069" data-time-ms="1434162069000" data-long-form="true">
+                                        <%= tweet.created_at.strftime('%a %d') %>
+                                      </span>
+                                    </a>
                                   </small>
                                 </div>
                                 <p class="u-hiddenVisually" aria-hidden="true" data-aria-label-part="1">
                                   Whitney Hiemstra retweeted Justin Smestad</p>
                                 <p class="TweetTextSize TweetTextSize--16px js-tweet-text tweet-text"
-                                   lang="en" data-aria-label-part="4">Dad joke!
+                                   lang="en" data-aria-label-part="4"><%= tweet.text %>
                                   <a href="https://t.co/3qm5rTWsjy" rel="nofollow" dir="ltr" data-expanded-url="https://twitter.com/jsmestad/status/609440490178506752"
                                      class="twitter-timeline-link u-hidden" target="_blank" title="https://twitter.com/jsmestad/status/609440490178506752"><span class="tco-ellipsis"></span><span class="invisible">https://</span><span class="js-display-url">twitter.com/jsmestad/statu</span><span class="invisible">s/609440490178506752</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a>
                                 </p>
@@ -1493,11 +1481,13 @@
                                          data-user-id="14482753" href="/jsmestad/status/609440490178506752" tabindex="0">
                                       <div class="tweet-content">
                                         <div class="QuoteTweet-authorAndText u-alignTop">
-                                                                                        <span class="QuoteTweet-originalAuthor u-cf u-textTruncate stream-item-header js-user-profile-link">
-                                                                                            <b class="QuoteTweet-fullname u-linkComplex-target">Justin Smestad</b>
-                                                                                            <span class="QuoteTweet-screenname u-dir" dir="ltr">
-                                                                                                <span class="at">@</span>jsmestad</span>
-                                                                                        </span>
+                                          <span class="QuoteTweet-originalAuthor u-cf u-textTruncate stream-item-header js-user-profile-link">
+                                              <b class="QuoteTweet-fullname u-linkComplex-target">
+<!--TODO tweet owner-->                                     Justin Smestad
+                                              </b>
+                                              <span class="QuoteTweet-screenname u-dir" dir="ltr">
+<!--TODO tweet owner screenname-->            <span class="at">@</span>jsmestad</span>
+                                          </span>
                                           <div class="QuoteTweet-text tweet-text u-dir" lang="en" data-aria-label-part="2"
                                                dir="ltr">“
                                             <a class="twitter-atreply pretty-link js-nav" dir="ltr"><s>@</s><b>pakalupapito</b></a>: i broke up with my gym we were just not working out” /cc @whit_hiemstra</div>
@@ -1668,6 +1658,7 @@
                       <div class="modal-overlay"></div>
                     </div>
                   </div>
+                 <% end %>
                 </div>
                 <!--<div class="Grid-cell u-size1of3">-->
                   <!--<div class="Grid Grid--withGutter">-->
