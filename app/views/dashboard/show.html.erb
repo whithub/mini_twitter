@@ -432,7 +432,9 @@
                   <span class="Icon Icon--notifications Icon--large"></span>
                   <span class="text">Notifications</span>
                     <span class="count">
-                      <span class="count-inner">0</span>
+                      <span class="count-inner">
+<!--TODO notification counter-->   0
+                      </span>
                     </span>
                 </a>
               </li>
@@ -450,14 +452,14 @@
             <div role="search">
               <form class="t1-form form-search js-search-form" action="/search" id="global-nav-search">
                 <label class="visuallyhidden" for="search-query">Search query</label>
-                <input class="search-input" type="text" id="search-query"
-                       placeholder="Search Twitter" name="q" autocomplete="off" spellcheck="false"
-                       aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-dropdown-1">
-                                    <span class="search-icon js-search-action">
-                                        <button type="submit" class="Icon Icon--search nav-search" tabindex="-1">
-                                          <span class="visuallyhidden">Search Twitter</span>
-                                        </button>
-                                    </span>
+                <!--<input class="search-input" type="text" id="search-query"-->
+                       <!--placeholder="Search Twitter" name="q" autocomplete="off" spellcheck="false"-->
+                       <!--aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-dropdown-1">-->
+                                    <!--<span class="search-icon js-search-action">-->
+                                        <!--<button type="submit" class="Icon Icon--search nav-search" tabindex="-1">-->
+                                          <!--<span class="visuallyhidden">Search Twitter</span>-->
+                                        <!--</button>-->
+                                    <!--</span>-->
                 <div role="listbox" class="dropdown-menu typeahead" id="typeahead-dropdown-1">
                   <div aria-hidden="true" class="dropdown-caret">
                     <div class="caret-outer"></div>
@@ -527,7 +529,13 @@
               <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown">
                 <a href="/settings/account" class="btn js-tooltip settings dropdown-toggle js-dropdown-toggle"
                    id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom"
-                   role="button" aria-haspopup="true"><img class="avatar size32" src="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI_normal.jpg" alt="Profile and settings" data-user-id="3094852202"></a>
+                   role="button" aria-haspopup="true">
+                  <img class="avatar size32"
+                       src=
+                         <% if current_user %>
+                            <%= current_user.resize_profile_picture %>
+                         <% end %>
+                       alt="Profile and settings" data-user-id="3094852202"></a>
                 <div class="dropdown-menu">
                   <div class="dropdown-caret">
                     <span class="caret-outer"></span>
@@ -536,39 +544,39 @@
                   <ul>
                     <li class="current-user" data-name="profile">
 <!--TODO -->
-                      <a href="/whithub" class="account-summary account-summary-small js-nav"
+                      <a href= "/dashboard" class="account-summary account-summary-small js-nav"
                          data-nav="view_profile">
                         <div class="content">
                           <div class="account-group js-mini-current-user" data-user-id="3094852202" data-screen-name="whithub">
                             <b class="fullname">
-                              <% if current_user %>
-                                <%= current_user.name %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.name %>
+<% end %>
                             </b>
                             <span class="screen-name hidden" dir="ltr">
-                              <% if current_user %>
-                                <%= current_user.screen_name %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.screen_name %>
+<% end %>
                             </span><small class="metadata">View profile</small></div>
                         </div>
                       </a>
 <!--TODO end -->
                     </li>
-                    <li class="dropdown-divider"></li>
-                    <li data-name="lists">
-                      <a href="/whithub/lists" data-nav="all_lists">Lists</a>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                    <li>
-                      <a href="//support.twitter.com" data-nav="help_center">Help</a>
-                    </li>
-                    <li class="js-keyboard-shortcut-trigger" data-nav="shortcuts">
-                      <button type="button" class="dropdown-link">Keyboard shortcuts</button>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                    <li>
-                      <a href="/settings/account" data-nav="settings" class="js-nav">Settings</a>
-                    </li>
+                    <!--<li class="dropdown-divider"></li>-->
+                    <!--<li data-name="lists">-->
+                      <!--<a href="/whithub/lists" data-nav="all_lists">Lists</a>-->
+                    <!--</li>-->
+                    <!--<li class="dropdown-divider"></li>-->
+                    <!--<li>-->
+                      <!--<a href="//support.twitter.com" data-nav="help_center">Help</a>-->
+                    <!--</li>-->
+                    <!--<li class="js-keyboard-shortcut-trigger" data-nav="shortcuts">-->
+                      <!--<button type="button" class="dropdown-link">Keyboard shortcuts</button>-->
+                    <!--</li>-->
+                    <!--<li class="dropdown-divider"></li>-->
+                    <!--<li>-->
+                      <!--<a href="/settings/account" data-nav="settings" class="js-nav">Settings</a>-->
+                    <!--</li>-->
                     <li class="js-signout-button" id="signout-button" data-nav="logout">
                       <button type="button" class="dropdown-link">Log out</button>
                       <form class="t1-form dropdown-link-form signout-form"
@@ -609,7 +617,7 @@
                      <% if current_user %>
                        <%= current_user.profile_banner_url %>
                      <% end %>
-                   style="transform: none;">
+                   style="transform: none;>
             </div>
 <!--TODO end -->
             <div class="ProfileHeaderEditing is-withHeader">
@@ -725,7 +733,7 @@
                     <img class="ProfileAvatar-image"
                          src=
                            <% if current_user %>
-                            <%= current_user.profile_image_url %>
+                            <%= current_user.resize_profile_picture %>
                            <% end %>
                          alt="">
                   </a>
@@ -819,7 +827,12 @@
                          title="Whitney Hiemstra" data-resolved-url-large="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI.jpg"
                          data-url="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI.jpg"
                          target="_blank" tabindex="-1">
-                        <img class="ProfileCardMini-avatarImage" alt="Whitney Hiemstra" src="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI_normal.jpg">
+                        <img class="ProfileCardMini-avatarImage" alt="Whitney Hiemstra"
+                             src=
+                               <% if current_user %>
+                                <%= current_user.resize_profile_picture %>
+                               <% end %>
+                        >
                       </a>
                       <div class="ProfileCardMini-details">
                         <div class="ProfileNameTruncated">
@@ -866,7 +879,7 @@
 
                             <span class="ProfileNav-value" data-is-compact="false">
                               <% if current_user %>
-                                <%= current_user.followers_count %>
+                                <%= current_user.friends_count %>
                               <% end %>
                             </span>
 <!--TODO end-->
@@ -881,7 +894,7 @@
 
                             <span class="ProfileNav-value" data-is-compact="false">
                               <% if current_user %>
-                                <%= current_user.friends_count %>
+                                <%= current_user.followers_count %>
                               <% end %>
                             </span>
 <!--TODO end-->
@@ -904,9 +917,9 @@
                         </li>
                         <li class="ProfileNav-item ProfileNav-item--userActions u-floatRight u-textRight with-rightCaret ">
                           <div class="UserActions   u-textLeft">
-                            <button type="button" class="UserActions-editButton edit-button btn" data-scribe-element="profile_edit_button">
-                              <span class="button-text">Edit profile</span>
-                            </button>
+                            <!--<button type="button" class="UserActions-editButton edit-button btn" data-scribe-element="profile_edit_button">-->
+                              <!--<span class="button-text">Edit profile</span>-->
+                            <!--</button>-->
                             <div class="ProfilePage-editingButtons">
                               <button class="ProfilePage-saveButton btn primary-btn" tabindex="3">Save changes</button>
                                                                 <span class="ProfilePage-savingIndicator">
@@ -1404,24 +1417,20 @@
                     </div>
                   </div>
                   <div id="timeline">
-                    <% current_user.twitter_timeline.each do |tweet| %>
                     <div class="stream-container " data-max-position="609546014047907840"
-                         data-min-position="609546014047907840">
-                      <div class="stream-item js-new-items-bar-container"></div>
-                      <div class="stream profile-stream">
-                        <ol class="stream-items js-navigable-stream" id="stream-items-id">
-                          <li class="js-stream-item stream-item stream-item expanding-stream-item
-" data-item-id="609546014047907840" id="stream-item-tweet-609546014047907840"
-                              data-item-type="tweet">
-                            <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable js-original-tweet
- my-tweet
+                    data-min-position="609546014047907840">
+                    <div class="stream-item js-new-items-bar-container"></div>
+                    <div class="stream profile-stream">
+                    <ol class="stream-items js-navigable-stream" id="stream-items-id">
 
 
+<% current_user.twitter_timeline.each do |tweet| %>
 
- with-non-tweet-action-follow-button
 
-
-" data-tweet-id="609546014047907840" data-disclosure-type="" data-item-id="609546014047907840"
+                    <li class="js-stream-item stream-item stream-item expanding-stream-item" data-item-id="609546014047907840" id="stream-item-tweet-609546014047907840"
+                    data-item-type="tweet">
+                            <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable js-original-tweet my-tweetwith-non-tweet-action-follow-button"
+                                  data-tweet-id="609546014047907840" data-disclosure-type="" data-item-id="609546014047907840"
                                  data-permalink-path="/whithub/status/609546014047907840" data-screen-name="whithub"
                                  data-name="Whitney Hiemstra" data-user-id="3094852202" data-expanded-footer="<div class=&quot;js-tweet-details-fixer tweet-details-fixer&quot;>
 
@@ -1476,8 +1485,8 @@
                                   Whitney Hiemstra retweeted Justin Smestad</p>
                                 <p class="TweetTextSize TweetTextSize--16px js-tweet-text tweet-text"
                                    lang="en" data-aria-label-part="4"><%= tweet.text %>
-                                  <a href="https://t.co/3qm5rTWsjy" rel="nofollow" dir="ltr" data-expanded-url="https://twitter.com/jsmestad/status/609440490178506752"
-                                     class="twitter-timeline-link u-hidden" target="_blank" title="https://twitter.com/jsmestad/status/609440490178506752"><span class="tco-ellipsis"></span><span class="invisible">https://</span><span class="js-display-url">twitter.com/jsmestad/statu</span><span class="invisible">s/609440490178506752</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a>
+                                  <!--<a href="https://t.co/3qm5rTWsjy" rel="nofollow" dir="ltr" data-expanded-url="https://twitter.com/jsmestad/status/609440490178506752"-->
+                                     <!--class="twitter-timeline-link u-hidden" target="_blank" title="https://twitter.com/jsmestad/status/609440490178506752"><span class="tco-ellipsis"></span><span class="invisible">https://</span><span class="js-display-url">twitter.com/jsmestad/statu</span><span class="invisible">s/609440490178506752</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a>-->
                                 </p>
                                 <p class="u-hiddenVisually" aria-hidden="true" data-aria-label-part="3">
                                   Whitney Hiemstra added,</p>
@@ -1492,7 +1501,8 @@
                                         <div class="QuoteTweet-authorAndText u-alignTop">
                                           <span class="QuoteTweet-originalAuthor u-cf u-textTruncate stream-item-header js-user-profile-link">
                                               <b class="QuoteTweet-fullname u-linkComplex-target">
-<!--TODO tweet owner-->                                     Justin Smestad
+<!--TODO tweet owner-->                        Justin Smestad
+                                                <%#= tweet. %>
                                               </b>
                                               <span class="QuoteTweet-screenname u-dir" dir="ltr">
 <!--TODO tweet owner screenname-->            <span class="at">@</span>jsmestad</span>
@@ -1533,17 +1543,19 @@
                                               disabled="" data-modal="ProfileTweet-retweet" type="button">
                                         <span class="Icon Icon--retweet"></span>
                                         <span class="u-hiddenVisually">Retweet</span>
-                                                                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero">
-                                                                                        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
-                                                                                    </span>
+                                        <span class="ProfileTweet-actionCount">
+                                            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">
+<%#= tweet.user.retweet_count %>
+                                            13</span>
+                                        </span>
                                       </button>
                                       <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet js-tooltip"
                                               data-modal="ProfileTweet-retweet" title="Undo retweet" type="button">
                                         <span class="Icon Icon--retweet"></span>
                                         <span class="u-hiddenVisually">Retweeted</span>
-                                                                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero">
-                                                                                        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
-                                                                                    </span>
+                                        <span class="ProfileTweet-actionCount">
+                                            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                        </span>
                                       </button>
                                     </div>
                                     <div class="ProfileTweet-action ProfileTweet-action--favorite js-toggleState">
@@ -1551,17 +1563,17 @@
                                               title="Favorite" type="button">
                                         <span class="Icon Icon--favorite"></span>
                                         <span class="u-hiddenVisually">Favorite</span>
-                                                                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero">
-                                                                                        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
-                                                                                    </span>
+                                          <span class="ProfileTweet-actionCount ProfileTweet-actionCount">
+                                              <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                          </span>
                                       </button>
                                       <button class="ProfileTweet-actionButtonUndo u-linkClean js-actionButton js-actionFavorite js-tooltip"
                                               title="Undo favorite" type="button">
                                         <span class="Icon Icon--favorite"></span>
                                         <span class="u-hiddenVisually">Favorited</span>
-                                                                                    <span class="ProfileTweet-actionCount ProfileTweet-actionCount--isZero">
-                                                                                        <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
-                                                                                    </span>
+                                        <span class="ProfileTweet-actionCount">
+                                            <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true"></span>
+                                        </span>
                                       </button>
                                     </div>
                                     <div class="ProfileTweet-action ProfileTweet-action--more js-more-ProfileTweet-actions">
@@ -1667,7 +1679,11 @@
                       <div class="modal-overlay"></div>
                     </div>
                   </div>
-                 <% end %>
+
+
+<% end %>
+
+
                 </div>
                 <!--<div class="Grid-cell u-size1of3">-->
                   <!--<div class="Grid Grid--withGutter">-->
@@ -1915,145 +1931,145 @@
           </div>
         </div>
       </div>
-      <div id="trends_dialog" class="trends-dialog modal-container">
-        <div class="close-modal-background-target"></div>
-        <div class="modal draggable">
-          <div class="modal-content">
-            <button type="button" class="modal-btn modal-close js-close">
-                                <span class="Icon Icon--close Icon--medium">
-                                    <span class="visuallyhidden">Close</span>
-                                </span>
-            </button>
-            <div class="modal-header">
-              <h3 class="modal-title">Trends</h3>
-            </div>
-            <div class="modal-body">
-              <div class="trends-personalized content-placeholder" style="display: none;">
-                <h2 class="title">Trends tailored just for you.</h2>
-                <p>Trends offer a unique way to get closer to what you care about. They are
-                  tailored for you based on your location and who you follow.</p>
-                <p class="placeholder-actions">
-                  <button type="button" class="btn customize-by-location">Change</button>
-                  <button type="button" class="btn primary-btn done">Keep tailored Trends</button>
-                </p>
-              </div>
-              <div class="trends-dialog-error">
-                <p></p>
-              </div>
-              <div class="trends-wrapper" id="trends_dialog_content">
-                <div class="loading">
-                  <span class="spinner-bigger"></span>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer trends-by-location" style="display: none;">
-              <button type="button" class="btn select-default" data-personalized="true">Get tailored Trends</button>
-              <button type="button" class="btn primary-btn done">Done</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="avatar_confirm_remove_dialog" class="modal-container profile-edit-message hidden">
-        <div class="modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Remove photo?</h3>
-            </div>
-            <div class="modal-body">
-              <p class="profile-message">Your profile photo helps people identify you.
-                <br>Do you really want to remove it?</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn primary-btn ok-btn">Remove photo</button>
-              <button class="btn cancel-btn js-close">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="header_confirm_remove_dialog" class="modal-container profile-edit-message hidden">
-        <div class="modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Remove header photo?</h3>
-            </div>
-            <div class="modal-body">
-              <p class="profile-message">Your header photo makes your profile more personal.
-                <br>Do you really want to remove it?</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn primary-btn ok-btn">Remove header</button>
-              <button class="btn cancel-btn js-close">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="profile_image_upload_dialog" class="modal-container image-upload-dialog">
-        <div class="close-modal-background-target"></div>
-        <div class="modal draggable profile-avatar-modal">
-          <div class="modal-content">
-            <button type="button" class="modal-btn modal-close js-close">
-                                <span class="Icon Icon--close Icon--medium">
-                                    <span class="visuallyhidden">Close</span>
-                                </span>
-            </button>
-            <div class="modal-header">
-              <h3 class="modal-title">Position and size your photo</h3>
-            </div>
-            <div class="modal-body">
-              <div class="upload-frame image-upload-webcam" style="display: none;">
-                <div class="webcam-container"></div>
-                <canvas class="webcam-canvas" height="240" width="320" style="display:none"></canvas>
-                <video autoplay=""></video>
-                <div class="video-overlay">
-                  <div class="u-textCenter video-countdown"></div>
-                </div>
-                <div class="video-permission-explain" style="display:none">
-                  <h4>Starting webcam...</h4>
-                  <br>Choose "accept" or "allow" in your browser to continue taking a photo
-                  for your Twitter profile.</div>
-                <div class="video-permission-fail" style="display:none">Uh oh...it looks like you don't have a webcam or we were unable to get
-                  permission to use your webcam. Please close this window and upload a photo
-                  instead.</div>
-              </div>
-              <div class="upload-frame clearfix image-upload-crop" style="display: none">
-                <span class="spinner-bigger crop-spinner" style="display: none"></span>
-                <div class="crop-zone cropper-avatar-size">
-                  <div class="cropper-mask">
-                    <div class="cropper-overlay"></div>
-                    <img class="crop-image" alt="">
-                  </div>
-                  <div class="cropper-slider-outer">
-                    <span class="icon image-gray"></span>
-                    <div class="cropper-slider"></div>
-                    <span class="icon image-gray-large"></span>
-                  </div>
-                </div>
-              </div>
-              <div style="display: none;">
-                <canvas class="drawsurface"></canvas>
-              </div>
-              <div class="upload-frame clearfix image-upload-spinner"></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn profile-image-cancel js-close">Cancel</button>
-              <button type="button" class="btn profile-image-previous"
-                      style="display: none">Retake Photo</button>
-              <button type="button" class="btn primary-btn profile-image-capture-webcam"
-                      disabled="" style="display: none">Take picture</button>
-              <button type="button" class="btn primary-btn profile-image-save"
-                      style="display: none">Apply</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--<div id="trends_dialog" class="trends-dialog modal-container">-->
+        <!--<div class="close-modal-background-target"></div>-->
+        <!--<div class="modal draggable">-->
+          <!--<div class="modal-content">-->
+            <!--<button type="button" class="modal-btn modal-close js-close">-->
+                                <!--<span class="Icon Icon--close Icon--medium">-->
+                                    <!--<span class="visuallyhidden">Close</span>-->
+                                <!--</span>-->
+            <!--</button>-->
+            <!--<div class="modal-header">-->
+              <!--<h3 class="modal-title">Trends</h3>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+              <!--<div class="trends-personalized content-placeholder" style="display: none;">-->
+                <!--<h2 class="title">Trends tailored just for you.</h2>-->
+                <!--<p>Trends offer a unique way to get closer to what you care about. They are-->
+                  <!--tailored for you based on your location and who you follow.</p>-->
+                <!--<p class="placeholder-actions">-->
+                  <!--<button type="button" class="btn customize-by-location">Change</button>-->
+                  <!--<button type="button" class="btn primary-btn done">Keep tailored Trends</button>-->
+                <!--</p>-->
+              <!--</div>-->
+              <!--<div class="trends-dialog-error">-->
+                <!--<p></p>-->
+              <!--</div>-->
+              <!--<div class="trends-wrapper" id="trends_dialog_content">-->
+                <!--<div class="loading">-->
+                  <!--<span class="spinner-bigger"></span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="modal-footer trends-by-location" style="display: none;">-->
+              <!--<button type="button" class="btn select-default" data-personalized="true">Get tailored Trends</button>-->
+              <!--<button type="button" class="btn primary-btn done">Done</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div id="avatar_confirm_remove_dialog" class="modal-container profile-edit-message hidden">-->
+        <!--<div class="modal">-->
+          <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+              <!--<h3>Remove photo?</h3>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+              <!--<p class="profile-message">Your profile photo helps people identify you.-->
+                <!--<br>Do you really want to remove it?</p>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+              <!--<button class="btn primary-btn ok-btn">Remove photo</button>-->
+              <!--<button class="btn cancel-btn js-close">Cancel</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div id="header_confirm_remove_dialog" class="modal-container profile-edit-message hidden">-->
+        <!--<div class="modal">-->
+          <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+              <!--<h3>Remove header photo?</h3>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+              <!--<p class="profile-message">Your header photo makes your profile more personal.-->
+                <!--<br>Do you really want to remove it?</p>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+              <!--<button class="btn primary-btn ok-btn">Remove header</button>-->
+              <!--<button class="btn cancel-btn js-close">Cancel</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div id="profile_image_upload_dialog" class="modal-container image-upload-dialog">-->
+        <!--<div class="close-modal-background-target"></div>-->
+        <!--<div class="modal draggable profile-avatar-modal">-->
+          <!--<div class="modal-content">-->
+            <!--<button type="button" class="modal-btn modal-close js-close">-->
+                                <!--<span class="Icon Icon--close Icon--medium">-->
+                                    <!--<span class="visuallyhidden">Close</span>-->
+                                <!--</span>-->
+            <!--</button>-->
+            <!--<div class="modal-header">-->
+              <!--<h3 class="modal-title">Position and size your photo</h3>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+              <!--<div class="upload-frame image-upload-webcam" style="display: none;">-->
+                <!--<div class="webcam-container"></div>-->
+                <!--<canvas class="webcam-canvas" height="240" width="320" style="display:none"></canvas>-->
+                <!--<video autoplay=""></video>-->
+                <!--<div class="video-overlay">-->
+                  <!--<div class="u-textCenter video-countdown"></div>-->
+                <!--</div>-->
+                <!--<div class="video-permission-explain" style="display:none">-->
+                  <!--<h4>Starting webcam...</h4>-->
+                  <!--<br>Choose "accept" or "allow" in your browser to continue taking a photo-->
+                  <!--for your Twitter profile.</div>-->
+                <!--<div class="video-permission-fail" style="display:none">Uh oh...it looks like you don't have a webcam or we were unable to get-->
+                  <!--permission to use your webcam. Please close this window and upload a photo-->
+                  <!--instead.</div>-->
+              <!--</div>-->
+              <!--<div class="upload-frame clearfix image-upload-crop" style="display: none">-->
+                <!--<span class="spinner-bigger crop-spinner" style="display: none"></span>-->
+                <!--<div class="crop-zone cropper-avatar-size">-->
+                  <!--<div class="cropper-mask">-->
+                    <!--<div class="cropper-overlay"></div>-->
+                    <!--<img class="crop-image" alt="">-->
+                  <!--</div>-->
+                  <!--<div class="cropper-slider-outer">-->
+                    <!--<span class="icon image-gray"></span>-->
+                    <!--<div class="cropper-slider"></div>-->
+                    <!--<span class="icon image-gray-large"></span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div style="display: none;">-->
+                <!--<canvas class="drawsurface"></canvas>-->
+              <!--</div>-->
+              <!--<div class="upload-frame clearfix image-upload-spinner"></div>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+              <!--<button type="button" class="btn profile-image-cancel js-close">Cancel</button>-->
+              <!--<button type="button" class="btn profile-image-previous"-->
+                      <!--style="display: none">Retake Photo</button>-->
+              <!--<button type="button" class="btn primary-btn profile-image-capture-webcam"-->
+                      <!--disabled="" style="display: none">Take picture</button>-->
+              <!--<button type="button" class="btn primary-btn profile-image-save"-->
+                      <!--style="display: none">Apply</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
-  <script nonce="lNdaiJxrTDN1NvY8p1PvRQ==">
-    if (window.ttft) {
-      window.ttft.recordMilestone('page', document.getElementById('swift-page-name').getAttribute('content'));
-      window.ttft.recordMilestone('client_record_time', window.ttft.now());
-    }
-  </script>
+  <!--<script nonce="lNdaiJxrTDN1NvY8p1PvRQ==">-->
+    <!--if (window.ttft) {-->
+      <!--window.ttft.recordMilestone('page', document.getElementById('swift-page-name').getAttribute('content'));-->
+      <!--window.ttft.recordMilestone('client_record_time', window.ttft.now());-->
+    <!--}-->
+//  </script>
 </div>
 <div class="alert-messages hidden" id="message-drawer" style="top: -40px;">
   <div class="message ">
@@ -2234,6 +2250,7 @@
                                             <button type="button" class="notifications-enable-text dropdown-link ">Turn on notifications</button>
                                             <button type="button" class="notifications-disable-text dropdown-link u-hidden">Turn off notifications</button>
                                           </li>
+
                                           <li class="js-actionDeleteConversation">
                                             <button type="button" class="dropdown-link">Delete Conversation</button>
                                           </li>

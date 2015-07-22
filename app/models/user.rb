@@ -32,11 +32,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def current_profile
-  #   twitter_client.user
-  # end
+  def resize_profile_picture
+    twitter_client.user.profile_image_url.to_s.gsub("_normal", "_bigger")
+  end
 
   def twitter_timeline
-    twitter_client.home_timeline
+    twitter_client.user_timeline
   end
+
+  def retweet_count
+    twitter_client.retweets_of_me
+  end
+
+
 end
