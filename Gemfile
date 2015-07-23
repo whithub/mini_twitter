@@ -24,6 +24,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
+
 group :development, :test do
   gem 'pry'
   gem 'web-console', '~> 2.0'

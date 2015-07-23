@@ -24,20 +24,22 @@ class UserLogsInViaTwitterTest < ActionDispatch::IntegrationTest
           }
         },
         credentials: {
-          token: "pizza",
-          secret: "secretpizza"
+          token: ENV["SAMPLE_OAUTH_TOKEN"],
+          secret: ENV["SAMPLE_OAUTH_TOKEN_SECRET"]
         }
       })
   end
 
   test "logging in" do
-    visit "/"
-    assert_equal 200, page.status_code
-    click_link "Login"
+    VCR.use_cassette("user-timeline") do
+      visit "/"
+      assert_equal 200, page.status_code
+      click_on "Login"
 
-    assert_equal "/dashboard", current_path
-    assert page.has_content?("Whitney")
-    assert page.has_link?("logout")
+      assert_equal "/dashboard", current_path
+      assert page.has_content?("Whitney")
+      # assert page.has_link?("logout")
+    end
   end
 
   test "authenticated user can logout" do

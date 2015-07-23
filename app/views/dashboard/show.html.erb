@@ -527,9 +527,9 @@
             </div>
             <ul class="nav right-actions">
               <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown">
-                <a href="/settings/account" class="btn js-tooltip settings dropdown-toggle js-dropdown-toggle"
+                <a class="js-tooltip settings dropdown-toggle js-dropdown-toggle"
                    id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom"
-                   role="button" aria-haspopup="true">
+                   aria-haspopup="true">
                   <img class="avatar size32"
                     src=
 <% if current_user %>
@@ -541,60 +541,14 @@
                     <span class="caret-outer"></span>
                     <span class="caret-inner"></span>
                   </div>
-                  <ul>
-                    <li class="current-user" data-name="profile">
-<!--TODO -->
-                      <a href= "/dashboard" class="account-summary account-summary-small js-nav"
-                         data-nav="view_profile">
-                        <div class="content">
-                          <div class="account-group js-mini-current-user" data-user-id="3094852202" data-screen-name="whithub">
-                            <b class="fullname">
-<% if current_user %>
-  <%= current_user.name %>
-<% end %>
-                            </b>
-                            <span class="screen-name hidden" dir="ltr">
-<% if current_user %>
-  <%= current_user.screen_name %>
-<% end %>
-                            </span><small class="metadata">View profile</small></div>
-                        </div>
-                      </a>
-<!--TODO end -->
-                    </li>
-                    <!--<li class="dropdown-divider"></li>-->
-                    <!--<li data-name="lists">-->
-                      <!--<a href="/whithub/lists" data-nav="all_lists">Lists</a>-->
-                    <!--</li>-->
-                    <!--<li class="dropdown-divider"></li>-->
-                    <!--<li>-->
-                      <!--<a href="//support.twitter.com" data-nav="help_center">Help</a>-->
-                    <!--</li>-->
-                    <!--<li class="js-keyboard-shortcut-trigger" data-nav="shortcuts">-->
-                      <!--<button type="button" class="dropdown-link">Keyboard shortcuts</button>-->
-                    <!--</li>-->
-                    <!--<li class="dropdown-divider"></li>-->
-                    <!--<li>-->
-                      <!--<a href="/settings/account" data-nav="settings" class="js-nav">Settings</a>-->
-                    <!--</li>-->
-                    <li class="js-signout-button" id="signout-button" data-nav="logout">
-                      <button type="button" class="dropdown-link">Log out</button>
-                      <form class="t1-form dropdown-link-form signout-form"
-                            id="signout-form" action="/logout" method="DELETE">
-                        <input type="hidden" value="1a6ea21715995f359f6179b58a441a50cde2f7b7"
-                               name="authenticity_token" class="authenticity_token">
-                        <input type="hidden" name="reliability_event" class="js-reliability-event">
-                        <input type="hidden" name="scribe_log">
-                      </form>
-                    </li>
-                  </ul>
                 </div>
               </li>
               <li role="complementary" aria-labelledby="global-new-tweet-button" class="topbar-tweet-btn">
                 <button id="global-new-tweet-button" type="button" class="js-global-new-tweet js-tooltip btn primary-btn tweet-btn js-dynamic-tooltip"
                         data-placement="bottom" data-component-term="new_tweet_button">
-                  <span class="Icon Icon--tweet Icon--large"></span>
-                  <span class="text">Tweet</span>
+                  <%= link_to "Logout", logout_path, class: "submit btn primary-btn js-submit" %>
+                  <!--<span class="Icon Icon--tweet Icon--large"></span>-->
+                  <!--<span class="text" action="/logout" method="DELETE">Logout</span>-->
                 </button>
               </li>
             </ul>
@@ -818,6 +772,9 @@
           <div class="ProfileCanopy-navBar">
             <div class="ProfilePage-editingOverlay"></div>
             <div class="AppContainer">
+
+
+
               <div class="Grid Grid--withGutter">
                 <div class="Grid-cell u-size1of3 u-lg-size1of4">
                   <div class="ProfileCanopy-card" role="presentation" aria-hidden="true">
@@ -1518,7 +1475,8 @@
                                     </div>
                                   </div>
                                 </div>
-<% end %>
+ <% end %>
+
 <!--TODO end-->
 
                                 <div class="expanded-content js-tweet-details-dropdown"></div>
@@ -1549,8 +1507,8 @@
                                         <span class="u-hiddenVisually">Retweet</span>
                                         <span class="ProfileTweet-actionCount">
                                             <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">
-<%#= tweet.user.retweet_count %>
-                                            13333</span>
+<%= tweet.retweet_count %>
+                                            </span>
                                         </span>
                                       </button>
                                       <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet js-tooltip"
@@ -1688,47 +1646,60 @@
 <% end %>
 
 
-                </div>
                 <div class="Grid-cell u-size1of3">
                   <div class="Grid Grid--withGutter">
                     <div class="Grid-cell">
                       <div class="ProfileSidebar ProfileSidebar--withRightAlignment">
                         <div class="MoveableModule">
                           <div class="SidebarCommonModules">
-<%= form_tag(tweets_path, :method => 'post') do %>
-  <%= label_tag(:text, "What are you Tweeting about?!") %><br>
-  <%= text_area_tag(:text) %><br>
-  <%= submit_tag("Tweet", class: "submit btn primary-btn js-submit") %>
-<% end %>
+                            <div class="MoveableModule">
+                              <div class="SidebarCommonModules">
+                                <div class="WhoToFollow  is-visible">
+                                  <div class="WhoToFollow-header">
+                                    <!--<h3 class="WhoToFollow-title">Who to follow</h3>·-->
+
+<div class="my-submit-tweet-button">
+  <div class="tweeting-through-api">
+  <%= form_tag(tweets_path, :method => 'post') do %>
+    <%= label_tag(:text, "What are you Tweeting about?!") %><br>
+    <%= text_area_tag(:text) %><br>
+    <%= submit_tag("Tweet", class: "submit btn primary-btn js-submit") %>
+  <% end %>
+  </div>
+</div>
+
+                                </div>
+                            </div>
+                            <div class="Footer module roaming-module Footer--slim">
+                              <div class="flex-module">
+                                <div class="flex-module-inner js-items-container">
+                                  <ul class="u-cf">
+                                    <li class="Footer-item Footer-copyright copyright">© 2015 Twitter</li>
+                                    <li class="Footer-item">
+                                      <a class="Footer-link" href="/about">About</a>
+                                    </li>
+                                    <li class="Footer-item">
+                                      <a class="Footer-link" href="//support.twitter.com">Help</a>
+                                    </li>
+                                    <li class="Footer-item">
+                                      <a class="Footer-link" href="//support.twitter.com/articles/20170451">Ads info</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
 
-                        <!--<div class="MoveableModule">-->
-                          <!--<div class="SidebarCommonModules">-->
-                            <!--<div class="WhoToFollow  is-visible">-->
-                              <!--<div class="WhoToFollow-header">-->
-                                <!--<h3 class="WhoToFollow-title">Who to follow</h3>·-->
-                                <!--<button class="btn-link js-refresh-suggestions" type="button">Refresh</button>·-->
-                                <!--<a class="js-view-all-link" href="/who_to_follow/suggestions"-->
-                                   <!--data-element-term="view_all_link">-->
-                                  <!--View all-->
-                                <!--</a>-->
-                              <!--</div>-->
-                              <!--<div class="WhoToFollow-users js-recommended-followers" data-section-id="wtf"-->
-                                   <!--style="opacity: 1;">-->
-                                <!--<div class="js-account-summary account-summary js-actionable-user " data-user-id="17843244"-->
-                                     <!--data-feedback-token="500" data-impression-id="">-->
-                                  <!--<div class="dismiss js-action-dismiss">-->
-                                    <!--<span class="Icon Icon--close"></span>-->
-                                  <!--</div>-->
-                                  <!--<div class="content">-->
-                                    <!--<a class="account-group js-recommend-link js-user-profile-link user-thumb"-->
-                                       <!--href="/seeflanigan" data-user-id="17843244">-->
+
+
 
                                       <!--<img class="avatar js-action-profile-avatar " src="https://pbs.twimg.com/profile_images/563575097022087169/vsOhA0Fk_normal.png" alt="">-->
       <!--<span class="account-group-inner js-action-profile-name" data-user-id="17843244">-->
