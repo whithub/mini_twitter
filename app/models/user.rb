@@ -44,5 +44,13 @@ class User < ActiveRecord::Base
     twitter_client.retweets_of_me
   end
 
+  def post_tweet(tweet)
+    twitter_client.update(tweet)
+  end
+
+  # def post_retweet(tweet_id)
+  #   twitter_client.retweet(tweet_id)
+  # end
+
 
 end

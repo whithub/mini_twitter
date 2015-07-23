@@ -2376,8 +2376,8 @@
                 <span class="tweet-counter">140</span>
                 <button class="btn tweet-action primary-btn messaging tweet-btn disabled"
                         type="button" disabled="disabled">
-                                        <span class="button-text messaging-text">
-                                            <span class="Icon Icon--dm u-hideMediumViewport"></span>Send</span>
+                  <span class="button-text messaging-text">
+                      <span class="Icon Icon--dm u-hideMediumViewport"></span>Send</span>
                 </button>
               </div>
             </div>
@@ -2520,10 +2520,16 @@
             <span class="icon add-photo-icon hidden"></span>
             <span class="icon nav-tweet hidden"></span>
             <span class="tweet-drag-help tweet-drag-photo-here hidden">Drag photo here</span>
-            <span class="visuallyhidden" id="tweet-box-global-label">Tweet text</span>
-            <div aria-labelledby="tweet-box-global-label" id="tweet-box-global"
-                 class="tweet-box rich-editor" contenteditable="true" spellcheck="true"
-                 role="textbox" aria-multiline="true"></div>
+            <!--<span class="visuallyhidden" id="tweet-box-global-label">Tweet text</span>-->
+<%= form_tag(tweets_path, method: "post") do %>
+  <%= label_tag(:text, "What are you Tweeting about?!") %><br>
+  <%= text_area_tag(:text) %>
+  <%= submit_tag("Tweet", class: "submit btn primary-btn js-submit") %>
+<% end %>
+
+<!--<div aria-labelledby="tweet-box-global-label" id="tweet-box-global"
+     class="tweet-box rich-editor" contenteditable="true" spellcheck="true"
+     role="textbox" aria-multiline="true"></div>-->
             <div class="rich-normalizer"></div>
             <div role="listbox" class="dropdown-menu typeahead">
               <div aria-hidden="true" class="dropdown-caret">
@@ -2793,54 +2799,7 @@
             </div>
             <div class="CardComposer"></div>
           </div>
-          <div class="toolbar js-toolbar">
-            <div class="tweet-box-extras">
-                                <span class="TweetBox-mediaPicker">
-                                    <div class="photo-selector">
-                                      <button aria-hidden="true" class="btn icon-btn" type="button" tabindex="-1">
-                                        <span class="tweet-camera Icon Icon--camera js-tooltip" title="Add Photo"></span>
-                                        <span class="text add-photo-label  u-hideMediumViewport">Add photo</span>
-                                      </button>
-                                      <div class="image-selector">
-                                        <input type="hidden" name="media_data_empty" class="file-data">
-                                        <div class="multi-photo-data-container hidden"></div>
-                                        <label class="t1-label">
-                                          <span class="visuallyhidden">Add Photo</span>
-                                          <input type="file" name="media_empty" accept="image/gif,image/jpeg,image/jpg,image/png"
-                                                 class="file-input js-tooltip" tabindex="-1" title="Add Photo">
-                                        </label>
-                                        <div class="swf-container"></div>
-                                      </div>
-                                    </div>
-                                </span>
-              <div class="geo-picker">
-                <button class="btn js-geo-search-trigger geo-picker-btn icon-btn js-tooltip"
-                        type="button" tabindex="-1" title="Add location">
-                  <span class="Icon Icon--geo"></span>
-                  <span class="text geo-status">Add location</span>
-                </button>
-                <span class="dropdown-container"></span>
-                <input type="hidden" name="place_id">
-              </div>
-              <div class="TweetBoxUploadProgress">Uploading
-                <div class="TweetBoxUploadProgress-bar">
-                  <div class="TweetBoxUploadProgress-barPosition"></div>
-                </div>
-              </div>
-            </div>
-            <div class="tweet-button">
-              <span class="spinner"></span>
-              <span class="tweet-counter">140</span>
-              <button class="btn primary-btn tweet-action disabled tweet-btn js-tweet-btn"
-                      type="button" disabled="">
-                                    <span class="button-text tweeting-text">
-                                        <span class="Icon Icon--tweet"></span>Tweet</span>
-                                    <span class="button-text messaging-text">
-                                        <span class="Icon Icon--dm Icon--small"></span>Send message</span>
-              </button>
-            </div>
-          </div>
-        </form>
+
       </div>
     </div>
   </div>
@@ -2858,37 +2817,8 @@
       </div>
       <div class="modal-body">
         <div class="modal-inner">
-          <form class="t1-form goto-user-form">
-            <input class="input-block username-input" type="text" placeholder="Start typing a name to jump to a profile"
-                   aria-label="User" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-dropdown-2">
-            <div role="listbox" class="dropdown-menu typeahead" id="typeahead-dropdown-2">
-              <div aria-hidden="true" class="dropdown-caret">
-                <div class="caret-outer"></div>
-                <div class="caret-inner"></div>
-              </div>
-              <div role="presentation" class="dropdown-inner js-typeahead-results">
-                <ul role="presentation" class="typeahead-items typeahead-accounts js-typeahead-accounts block0"
-                    style="display: none;">
-                  <li role="presentation" data-user-id="" data-user-screenname="" data-remote="true"
-                      data-score="" class="typeahead-item typeahead-account-item js-selectable">
-                    <a role="option" class="js-nav" data-query-source="typeahead_click" data-search-query=""
-                       data-ds="account">
-                      <img class="avatar size32" alt="">
-      <span class="typeahead-user-item-info">
-        <span class="fullname"></span>
-        <span class="js-verified hidden"><span class="verifiedContainer"><span class="Icon Icon--verifiedFill Icon--small"></span><span class="Icon Icon--verified Icon--small"></span><span class="u-hiddenVisually">Verified account</span></span></span>
-        <span class="username"><s>@</s><b></b></span>
-      </span>
-                    </a>
-                  </li>
-                  <li role="presentation" class="js-selectable typeahead-accounts-shortcut js-shortcut">
-                    <a role="option" class="js-nav" href="" data-search-query="" data-query-source="typeahead_click"
-                       data-shortcut="true" data-ds="account_search"></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </form>
+
+
         </div>
       </div>
     </div>
@@ -3034,10 +2964,10 @@
             <span class="spinner"></span>
             <span class="RetweetDialog-counter tweet-counter">140</span>
             <button class="btn primary-btn retweet-action" type="button">
-                                <span class="RetweetDialog-retweetActionLabel">
-                                    <span class="Icon Icon--retweet"></span>Retweet</span>
-                                <span class="RetweetDialog-tweetActionLabel">
-                                    <span class="Icon Icon--tweet"></span>Tweet</span>
+                <span class="RetweetDialog-retweetActionLabel">
+                    <span class="Icon Icon--retweet"></span>Retweet</span>
+                <span class="RetweetDialog-tweetActionLabel">
+                    <span class="Icon Icon--tweet"></span>Tweet</span>
             </button>
           </div>
         </div>
@@ -4524,24 +4454,24 @@
       </div>
       <div class="toolbar js-toolbar">
         <div class="tweet-box-extras">
-                        <span class="TweetBox-mediaPicker">
-                            <div class="photo-selector">
-                              <button aria-hidden="true" class="btn icon-btn" type="button" tabindex="-1">
-                                <span class="tweet-camera Icon Icon--camera js-tooltip" title="Add Photo"></span>
-                                <span class="text add-photo-label  u-hideMediumViewport">Add photo</span>
-                              </button>
-                              <div class="image-selector">
-                                <input type="hidden" name="media_data_empty" class="file-data">
-                                <div class="multi-photo-data-container hidden"></div>
-                                <label class="t1-label">
-                                  <span class="visuallyhidden">Add Photo</span>
-                                  <input type="file" name="media_empty" accept="image/gif,image/jpeg,image/jpg,image/png"
-                                         class="file-input js-tooltip" tabindex="-1" title="Add Photo">
-                                </label>
-                                <div class="swf-container"></div>
-                              </div>
-                            </div>
-                        </span>
+          <span class="TweetBox-mediaPicker">
+              <div class="photo-selector">
+                <button aria-hidden="true" class="btn icon-btn" type="button" tabindex="-1">
+                  <span class="tweet-camera Icon Icon--camera js-tooltip" title="Add Photo"></span>
+                  <span class="text add-photo-label  u-hideMediumViewport">Add photo</span>
+                </button>
+                <div class="image-selector">
+                  <input type="hidden" name="media_data_empty" class="file-data">
+                  <div class="multi-photo-data-container hidden"></div>
+                  <label class="t1-label">
+                    <span class="visuallyhidden">Add Photo</span>
+                    <input type="file" name="media_empty" accept="image/gif,image/jpeg,image/jpg,image/png"
+                           class="file-input js-tooltip" tabindex="-1" title="Add Photo">
+                  </label>
+                  <div class="swf-container"></div>
+                </div>
+              </div>
+          </span>
           <div class="geo-picker">
             <button class="btn js-geo-search-trigger geo-picker-btn icon-btn js-tooltip"
                     type="button" tabindex="-1" title="Add location">
