@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def resize_profile_picture
+  def resize_profile_pic
     twitter_client.user.profile_image_url.to_s.gsub("_normal", "_bigger")
   end
 

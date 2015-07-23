@@ -531,10 +531,10 @@
                    id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom"
                    role="button" aria-haspopup="true">
                   <img class="avatar size32"
-                       src=
-                         <% if current_user %>
-                            <%= current_user.resize_profile_picture %>
-                         <% end %>
+
+<% if current_user %>
+  <%= current_user.profile_image_url %>
+<% end %>
                        alt="Profile and settings" data-user-id="3094852202"></a>
                 <div class="dropdown-menu">
                   <div class="dropdown-caret">
@@ -614,9 +614,9 @@
             <div class="ProfileCanopy-headerBg">
               <img alt=""
                    src=
-                     <% if current_user %>
-                       <%= current_user.profile_banner_url %>
-                     <% end %>
+<% if current_user %>
+ <%= current_user.profile_banner_url %>
+<% end %>
                    style="transform: none;>
             </div>
 <!--TODO end -->
@@ -732,9 +732,9 @@
                      target="_blank" data-original-title="Whitney Hiemstra">
                     <img class="ProfileAvatar-image"
                          src=
-                           <% if current_user %>
-                            <%= current_user.resize_profile_picture %>
-                           <% end %>
+<% if current_user %>
+  <%= current_user.resize_profile_pic %>
+<% end %>
                          alt="">
                   </a>
 <!--TODO end-->
@@ -829,9 +829,9 @@
                          target="_blank" tabindex="-1">
                         <img class="ProfileCardMini-avatarImage" alt="Whitney Hiemstra"
                              src=
-                               <% if current_user %>
-                                <%= current_user.resize_profile_picture %>
-                               <% end %>
+<% if current_user %>
+  <%= current_user.resize_profile_pic %>
+<% end %>
                         >
                       </a>
                       <div class="ProfileCardMini-details">
@@ -863,9 +863,9 @@
 <!--TODO-->
 
                             <span class="ProfileNav-value" data-is-compact="false">
-                              <% if current_user %>
-                                <%= current_user.statuses_count %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.statuses_count %>
+<% end %>
                             </span>
 <!--TODO end-->
 
@@ -878,9 +878,9 @@
 <!--TODO-->
 
                             <span class="ProfileNav-value" data-is-compact="false">
-                              <% if current_user %>
-                                <%= current_user.friends_count %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.friends_count %>
+<% end %>
                             </span>
 <!--TODO end-->
 
@@ -893,9 +893,9 @@
 <!--TODO-->
 
                             <span class="ProfileNav-value" data-is-compact="false">
-                              <% if current_user %>
-                                <%= current_user.followers_count %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.followers_count %>
+<% end %>
                             </span>
 <!--TODO end-->
 
@@ -950,9 +950,9 @@
 <!--TODO-->
 
                         <a href="/whithub" class="ProfileHeaderCard-nameLink u-textInheritColor js-nav">
-                          <% if current_user %>
-                            <%= current_user.name %>
-                          <% end %>
+<% if current_user %>
+  <%= current_user.name %>
+<% end %>
                         </a>
 <!--TODO end-->
 
@@ -962,9 +962,9 @@
                         <a class="ProfileHeaderCard-screennameLink u-linkComplex js-nav" href="/whithub">
                           @
                           <span class="u-linkComplex-target">
-                            <% if current_user %>
-                              <%= current_user.screen_name %>
-                            <% end %>
+<% if current_user %>
+  <%= current_user.screen_name %>
+<% end %>
                           </span>
                         </a>
 <!--TODO end-->
@@ -975,9 +975,9 @@
 <!--TODO-->
                         <span class="ProfileHeaderCard-locationText u-dir" dir="ltr">
                             <a href="/search?q=place%3Ab49b3053b5c25bf5" data-place-id="b49b3053b5c25bf5">
-                              <% if current_user %>
-                                <%= current_user.location %>
-                              <% end %>
+<% if current_user %>
+  <%= current_user.location %>
+<% end %>
                             </a>
                         </span>
 <!--TODO end-->
@@ -1490,9 +1490,9 @@
                                 </p>
                                 <p class="u-hiddenVisually" aria-hidden="true" data-aria-label-part="3">
                                   Whitney Hiemstra added,</p>
-                                <div class="QuoteTweet
+<% if tweet.retweet? %>
+                                <div class="QuoteTwee u-block js-tweet-details-fixer">
 
-    u-block js-tweet-details-fixer">
                                   <div class="QuoteTweet-container">
                                     <div class="QuoteTweet-innerContainer u-cf js-permalink js-media-container"
                                          data-item-id="609440490178506752" data-item-type="tweet" data-screen-name="jsmestad"
@@ -1501,20 +1501,24 @@
                                         <div class="QuoteTweet-authorAndText u-alignTop">
                                           <span class="QuoteTweet-originalAuthor u-cf u-textTruncate stream-item-header js-user-profile-link">
                                               <b class="QuoteTweet-fullname u-linkComplex-target">
-<!--TODO tweet owner-->                        Justin Smestad
-                                                <%#= tweet. %>
+<%= tweet.retweeted_tweet.user.name %>
                                               </b>
                                               <span class="QuoteTweet-screenname u-dir" dir="ltr">
-<!--TODO tweet owner screenname-->            <span class="at">@</span>jsmestad</span>
+<span class="at">@</span>
+<%= tweet.retweeted_tweet.user.screen_name %></span>
                                           </span>
                                           <div class="QuoteTweet-text tweet-text u-dir" lang="en" data-aria-label-part="2"
                                                dir="ltr">“
-                                            <a class="twitter-atreply pretty-link js-nav" dir="ltr"><s>@</s><b>pakalupapito</b></a>: i broke up with my gym we were just not working out” /cc @whit_hiemstra</div>
+                                            <a class="twitter-atreply pretty-link js-nav" dir="ltr">
+                                            <s>@</s><b>pakalupapito</b>
+                                            </a>
+<%= tweet.retweeted_tweet.text %> @<%= tweet.user.screen_name %></div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+<% end %>
 <!--TODO end-->
 
                                 <div class="expanded-content js-tweet-details-dropdown"></div>
@@ -1546,7 +1550,7 @@
                                         <span class="ProfileTweet-actionCount">
                                             <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">
 <%#= tweet.user.retweet_count %>
-                                            13</span>
+                                            13333</span>
                                         </span>
                                       </button>
                                       <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet js-tooltip"
@@ -2577,7 +2581,11 @@
                     <a role="option" class="js-nav" data-query-source="typeahead_click" data-search-query=""
                        data-ds="account">
 <!--TODO -->
-                      <img class="avatar size32" alt="">
+                      <img class="avatar size32"
+<% if current_user %>
+  <%= current_user.resize_profile_pic %>
+<% end %>
+                       alt="">
 <!--TODO end-->
                       <span class="typeahead-user-item-info">
                         <span class="fullname"></span>
