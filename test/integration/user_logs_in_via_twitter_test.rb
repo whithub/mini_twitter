@@ -38,7 +38,6 @@ class UserLogsInViaTwitterTest < ActionDispatch::IntegrationTest
 
       assert_equal "/dashboard", current_path
       assert page.has_content?("Whitney")
-      # assert page.has_link?("logout")
     end
   end
 

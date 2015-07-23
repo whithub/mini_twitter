@@ -47,9 +47,7 @@ class AuthenticatedUserAbilitiesTest < ActionDispatch::IntegrationTest
 
       assert_equal "/dashboard", current_path
 
-      # within(".my-sweet-tweet") do
-        assert page.has_content?("Tweeting if fun!")
-      # end
+      assert page.has_content?("Tweeting if fun!")
     end
   end
 end

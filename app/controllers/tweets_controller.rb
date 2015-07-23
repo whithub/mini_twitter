@@ -13,6 +13,11 @@ class TweetsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  # def destroy
+  #   current_user.twitter_client.destroy(tweet_id)
+  #   redirect_to dashboard_path
+  # end
+
 end
 
 

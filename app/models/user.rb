@@ -40,17 +40,8 @@ class User < ActiveRecord::Base
     twitter_client.user_timeline
   end
 
-  # def retweet_count
-  #   twitter_client.retweets_of_me
-  # end
-
   def post_tweet(tweet)
     twitter_client.update(tweet)
   end
-
-  # def retweet_count(tweet_id)
-  #   twitter_client.retweets(tweet_id)
-  # end
-
 
 end
