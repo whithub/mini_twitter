@@ -1,8 +1,11 @@
 class TweetsController < ApplicationController
 
   def create
-    current_user.post_tweet(params[:text])
-    redirect_to dashboard_path
+    if current_user.twitter_client.update(params[:text])
+      redirect_to dashboard_path
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -10,10 +13,6 @@ class TweetsController < ApplicationController
     redirect_to dashboard_path
   end
 
-  # def retweet
-  #   current_user.retweet(params[:id])
-  #   redirect_to dashboard_path
-  # end
 end
 
 

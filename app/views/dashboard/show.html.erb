@@ -531,7 +531,7 @@
                    id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom"
                    role="button" aria-haspopup="true">
                   <img class="avatar size32"
-
+                    src=
 <% if current_user %>
   <%= current_user.profile_image_url %>
 <% end %>
@@ -1423,7 +1423,7 @@
                     <div class="stream profile-stream">
                     <ol class="stream-items js-navigable-stream" id="stream-items-id">
 
-
+<!-- TWEETING STARTS HERE! -->
 <% current_user.twitter_timeline.each do |tweet| %>
 
 
@@ -1689,10 +1689,25 @@
 
 
                 </div>
-                <!--<div class="Grid-cell u-size1of3">-->
-                  <!--<div class="Grid Grid--withGutter">-->
-                    <!--<div class="Grid-cell">-->
-                      <!--<div class="ProfileSidebar ProfileSidebar--withRightAlignment">-->
+                <div class="Grid-cell u-size1of3">
+                  <div class="Grid Grid--withGutter">
+                    <div class="Grid-cell">
+                      <div class="ProfileSidebar ProfileSidebar--withRightAlignment">
+                        <div class="MoveableModule">
+                          <div class="SidebarCommonModules">
+<%= form_tag(tweets_path, :method => 'post') do %>
+  <%= label_tag(:text, "What are you Tweeting about?!") %><br>
+  <%= text_area_tag(:text) %><br>
+  <%= submit_tag("Tweet", class: "submit btn primary-btn js-submit") %>
+<% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
                         <!--<div class="MoveableModule">-->
                           <!--<div class="SidebarCommonModules">-->
                             <!--<div class="WhoToFollow  is-visible">-->
@@ -2516,6 +2531,9 @@
               enctype="multipart/form-data">
           <input type="hidden" value="" name="use_tweet_ui_metrics">
           <img class="inline-reply-user-image avatar size32" src="https://pbs.twimg.com/profile_images/608755454043262976/mua4GLHI_normal.jpg"
+<% if current_user %>
+  <%= current_user.profile_image_url %>
+<% end %>
                alt="">
                         <span class="inline-reply-caret">
                             <span class="caret-inner"></span>
@@ -2525,9 +2543,9 @@
             <span class="icon nav-tweet hidden"></span>
             <span class="tweet-drag-help tweet-drag-photo-here hidden">Drag photo here</span>
             <!--<span class="visuallyhidden" id="tweet-box-global-label">Tweet text</span>-->
-<%= form_tag(tweets_path, method: "post") do %>
+<%= form_tag(tweets_path, :method => 'post') do %>
   <%= label_tag(:text, "What are you Tweeting about?!") %><br>
-  <%= text_area_tag(:text) %>
+  <%= text_area_tag(:text) %><br>
   <%= submit_tag("Tweet", class: "submit btn primary-btn js-submit") %>
 <% end %>
 
